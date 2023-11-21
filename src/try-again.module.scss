@@ -8,4 +8,8 @@
   border-radius: 8px;
   width: 240px;
   text-align: center;
+
+  &:focus-visible {
+    outline: 2px solid red;
+  }
 }
