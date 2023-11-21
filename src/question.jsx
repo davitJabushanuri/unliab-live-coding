@@ -24,25 +24,23 @@ export const Question = ({
   }, []);
   return (
     <div className={styles.container}>
-      <div key={Math.random()}>
-        <Header score={score} page={page} />
+      <Header score={score} page={page} />
 
-        <div className={styles.color}>
-          <h2>color&quot;:</h2>
-          <Color color={color.color} />
-        </div>
+      <div className={styles.color}>
+        <h2>color&quot;:</h2>
+        <Color color={color.color} />
+      </div>
 
-        <div className={styles.answers}>
-          <Answers
-            onAnswerClick={onAnswerClick}
-            answers={color.answers}
-            color={color.color}
-          />
-        </div>
+      <div className={styles.answers}>
+        <Answers
+          onAnswerClick={onAnswerClick}
+          answers={color.answers}
+          color={color.color}
+        />
+      </div>
 
-        <div className={styles.continue}>
-          <Continue onClick={onContinue} />
-        </div>
+      <div className={styles.continue}>
+        <Continue onClick={onContinue} />
       </div>
     </div>
   );
