@@ -1,35 +1,73 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+
+import { Question } from "./question";
+import { Result } from "./features/results/results";
+
+const URL = `https://random-colors-lovat.vercel.app/`;
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [colors, setColors] = useState([]);
+  const [score, setScore] = useState(200);
+  const [page, setPage] = useState(0);
+
+  const [count, setCount] = useState(0);
+
+  const onAnswerClick = (color, answer) => {
+    if (color !== answer) {
+      setScore((prev) => prev - 20);
+    }
+
+    setPage((prev) => prev + 1);
+  };
+
+  const fetchColors = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(URL);
+      const colors = await response.json();
+      setColors(colors);
+      setLoading(false);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchColors();
+  }, []);
+
+  if (loading) return <div>loading...</div>;
+
+  if (error) return <div>{error}</div>;
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      {colors.length > 0 &&
+        (page >= 10 ? (
+          <Result
+            page={page}
+            score={score}
+            count={count}
+            onTryAgainClick={() => {
+              fetchColors();
+              setPage(0);
+              setScore(200);
+            }}
+          />
+        ) : (
+          <Question
+            onAnswerClick={onAnswerClick}
+            color={colors[page]}
+            page={page}
+            score={score}
+            onContinue={() => setPage((prev) => prev + 1)}
+            setCount={setCount}
+          />
+        ))}
+    </div>
+  );
 }
 
-export default App
+export default App;

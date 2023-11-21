@@ -1,0 +1,29 @@
+.container {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.answer {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  background-color: #f4f3f6;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 510px;
+  font-size: 22px;
+  cursor: pointer;
+
+  .char {
+    display: grid;
+    place-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: #ede8e3;
+    border-radius: 100vmax;
+  }
+
+  .text {
+    margin: auto;
+  }
+}

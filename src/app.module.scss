@@ -1,0 +1,31 @@
+.container {
+  min-height: 100svh;
+  background-color: #ede8e3;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  .color {
+    display: grid;
+    place-items: center;
+    margin-bottom: 2rem;
+
+    h2 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .answers {
+    display: grid;
+    place-items: center;
+  }
+
+  .continue {
+    background-color: #f4f3f6;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

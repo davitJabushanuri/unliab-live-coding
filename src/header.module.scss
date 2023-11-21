@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+
+  h1 {
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  .placeholder {
+    width: 95px;
+  }
+}

@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  background-color: #ede8e3;
+
+  h2 {
+    margin-top: 5rem;
+    margin-inline: auto;
+    font-size: 40px;
+  }
+
+  .continue {
+    background-color: #f4f3f6;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
